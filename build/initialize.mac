@@ -1,0 +1,16 @@
+/control/getEnv PTFE_SURFTYPE
+/ptfe/surface/surfaceType {PTFE_SURFTYPE}
+
+/control/getEnv PTFE_DEPTH
+/ptfe/surface/contaminationDepth {PTFE_DEPTH} nm
+
+/control/getEnv PTFE_ONSURFACE
+/ptfe/surface/onSurface {PTFE_ONSURFACE}
+
+/control/getEnv PTFE_ANAROOT
+/control/getEnv PTFE_SURFTYPE
+/analysis/setFileName /Users/sdporzio/Data/Simulation_AlphaSourceVUVLamp/1mm_2M-ev
+
+
+/control/execute mac/verbose_settings.mac
+/run/initialize
