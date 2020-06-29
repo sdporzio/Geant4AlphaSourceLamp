@@ -69,7 +69,7 @@ G4VPhysicalVolume* ptfe_detectorConstruction::Construct()
   G4double ptfe_diameter = 40*mm;
   G4double ptfe_thickness = 15*mm;
   // G4double smallHole_diameter = 2*mm;
-  G4double smallHole_diameter = 1.2*mm;
+  G4double smallHole_diameter = 1.*mm;
   G4double curvature_radius = 50*mm;
   G4double collection_thickness = 30*mm;
 
