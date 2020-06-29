@@ -1,6 +1,0 @@
-/gps/particle proton
-/gps/energy 1.5 MeV
-/gps/direction 1 0 0
-########################
-# In the volume
-/gps/position -50 0 -10 um

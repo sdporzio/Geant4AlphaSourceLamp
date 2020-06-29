@@ -1,4 +1,0 @@
-/vis/open RayTracer
-/vis/drawVolume
-/vis/viewer/set/viewpointThetaPhi 30 30
-/vis/viewer/refresh

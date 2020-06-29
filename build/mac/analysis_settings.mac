@@ -1,4 +1,0 @@
-/control/getEnv PTFE_ANAROOT
-/control/getEnv PTFE_SURFTYPE
-/tracking/storeTrajectory 1
-/analysis/setFileName {PTFE_SURFTYPE}_{PTFE_ANAROOT}

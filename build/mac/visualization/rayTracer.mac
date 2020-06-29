@@ -1,6 +1,0 @@
-/vis/open gMocrenFile
-/vis/drawVolume
-/vis/viewer/set/upVector 0 0 1
-/vis/viewer/refresh
-#/vis/rayTracer/eyePosition -15 0 -15
-#/vis/rayTracer/trace g4RayTracer.jpeg

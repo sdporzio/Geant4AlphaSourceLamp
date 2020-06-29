@@ -1,7 +1,0 @@
-/ptfe/surface/activateRoughness true
-/ptfe/surface/wallWidth 200 um
-/ptfe/surface/wallDepth 200 um
-/ptfe/surface/baseWidth 1 um
-/ptfe/surface/featuresHeight 0.2 um
-/ptfe/surface/featuresSpacing 0 nm
-/ptfe/surface/parametricContamination True
