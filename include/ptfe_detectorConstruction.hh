@@ -17,16 +17,10 @@ class ptfe_detectorConstruction : public G4VUserDetectorConstruction
 
     virtual G4VPhysicalVolume* Construct();
 
-    G4double GetContaminationDepth() const { return fContaminationDepth; }
-    G4bool DoOnSurface() const { return fOnSurface; }
-    ptfe_surfaceGenerator* GetSG() const { return fSg; }
-
   private:
     G4GenericMessenger* fMessenger; // Generic messenger class
-    G4double fContaminationDepth; // How deep in the surface does Po210 go
-    G4bool fOnSurface; // Whether particle should be simulated EXACTLY on surface
-    G4int fSurfaceType; // Surface type
-    ptfe_surfaceGenerator* fSg;
+    G4int fHoleType;
+    G4float fHoleWidth;
 
 };
 

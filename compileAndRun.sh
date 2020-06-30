@@ -1,12 +1,10 @@
-PTFE_NEVENTS=2000000
-PTFE_RANDOMSEED=100
-PTFE_VISUAL=0
-
-export PTFE_ANAROOT="sim.root"
-export PTFE_SURFTYPE="3"
-export PTFE_DEPTH="10" #nm
-export PTFE_ONSURFACE="1" #nm
-
+export MG4_NEVENTS=1
+export MG4_RANDOMSEED=104
+export MG4_VISUAL=1
+export MG4_HOLETYPE=1
+export MG4_HOLEWIDTH=1.5
+export MG4_OUTDIR="/Users/sdporzio/Data/Simulation_AlphaSourceVUVLamp/"
+export MG4_FILENAME="${MG4_HOLEWIDTH}-w_${MG4_NEVENTS}-ev_${MG4_RANDOMSEED}-s.root"
 
 
 if [ "$GAL" == "/Users/sdporzio/MOUNT/GALILEO" ]
@@ -17,4 +15,4 @@ else
 fi
 cd build
 cmake ../
-make -j 4 && ./main ${PTFE_NEVENTS} ${PTFE_RANDOMSEED} ${PTFE_VISUAL}
+make -j 4 && ./main ${MG4_NEVENTS} ${MG4_RANDOMSEED} ${MG4_VISUAL}

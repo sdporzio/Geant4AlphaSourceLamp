@@ -27,10 +27,9 @@
 ptfe_detectorConstruction::ptfe_detectorConstruction() : G4VUserDetectorConstruction(),
   fMessenger(nullptr)
 {
-  fMessenger = new G4GenericMessenger(this,"/ptfe/surface/","");
-  fMessenger->DeclarePropertyWithUnit("contaminationDepth","um",fContaminationDepth,"");
-  fMessenger->DeclareProperty("surfaceType",fSurfaceType,"");
-  fMessenger->DeclareProperty("onSurface",fOnSurface,"");
+  fMessenger = new G4GenericMessenger(this,"/mg4/","");
+  fMessenger->DeclareProperty("holeType",fHoleType,"");
+  fMessenger->DeclareProperty("holeWidth",fHoleWidth,"");
 }
 ptfe_detectorConstruction::~ptfe_detectorConstruction()
 {
@@ -51,12 +50,6 @@ G4VPhysicalVolume* ptfe_detectorConstruction::Construct()
   G4Material* glass = nist->FindOrBuildMaterial("G4_GLASS_LEAD");
   G4Material* alum = nist->FindOrBuildMaterial("G4_ALUMINUM_OXIDE");
   G4Material* xenon = materials->MakeGasXe();
-  // Stupid materials
-  // G4Material* ptfe = xenon;
-  // G4Material* glass = xenon;
-  // G4Material* alum = xenon;
-
-
 
   // SIZES
   G4double disc_diameter = 15*mm;
@@ -68,8 +61,7 @@ G4VPhysicalVolume* ptfe_detectorConstruction::Construct()
   G4double mirror_centerThickness = 7.6*mm;
   G4double ptfe_diameter = 40*mm;
   G4double ptfe_thickness = 15*mm;
-  // G4double smallHole_diameter = 2*mm;
-  G4double smallHole_diameter = 1.*mm;
+  G4double smallHole_diameter = fHoleWidth*mm;
   G4double curvature_radius = 50*mm;
   G4double collection_thickness = 30*mm;
 
@@ -214,12 +206,102 @@ G4VPhysicalVolume* ptfe_detectorConstruction::Construct()
       solidPtfe_hole,
       0,
       G4ThreeVector());
-  G4VSolid* solidPtfe_straight = 
+  // MAKE ONE HOLE OR CLUSTER OF HOLES
+  G4VSolid* solidPtfe_straight;
+  if (fHoleType==0)
+  {
+    solidPtfe_straight = 
     new G4SubtractionSolid("PTFE_straight",
       solidPtfe_ring,
       solidPtfe_smallHole,
       0,
-      G4ThreeVector(0,-1*(mirror_diameter*0.5+smallHole_diameter*0.5),0));
+      G4ThreeVector(0,-1*(mirror_diameter*0.5+smallHole_diameter*0.5),0)); 
+  }
+  else
+  {
+    // Determine the whole set of coordinates
+    double mir_rad = mirror_diameter*0.5;
+    double hole_rad = smallHole_diameter*0.5;
+    double gap = 0.5;
+    double y0 = 0. - mir_rad - gap - hole_rad;
+    double yp1 = y0 - hole_rad - gap - hole_rad;
+    double ym1 = y0 + gap;
+    double x0 = 0.;
+    double xp1 = x0 + hole_rad + gap + hole_rad;
+    double xp2 = xp1 + hole_rad + gap + hole_rad;
+    double xp3 = xp2 + hole_rad + gap + hole_rad;
+    double xm1 = -xp1;
+    double xm2 = -xp2;
+    double xm3 = -xp3;
+
+    G4VSolid* solidPtfe_straight_interm;
+    // FIRST ROW (Y0)
+    solidPtfe_straight_interm = 
+    new G4SubtractionSolid("PTFE_straight_interm",
+      solidPtfe_ring,
+      solidPtfe_smallHole,
+      0,
+      G4ThreeVector(x0,y0,0.));
+    solidPtfe_straight_interm = 
+    new G4SubtractionSolid("PTFE_straight_interm",
+      solidPtfe_straight_interm,
+      solidPtfe_smallHole,
+      0,
+      G4ThreeVector(xm2,y0,0.));
+    solidPtfe_straight_interm = 
+    new G4SubtractionSolid("PTFE_straight_interm",
+      solidPtfe_straight_interm,
+      solidPtfe_smallHole,
+      0,
+      G4ThreeVector(xm1,y0,0.));
+    solidPtfe_straight_interm = 
+    new G4SubtractionSolid("PTFE_straight_interm",
+      solidPtfe_straight_interm,
+      solidPtfe_smallHole,
+      0,
+      G4ThreeVector(xp1,y0,0.));
+    solidPtfe_straight_interm = 
+    new G4SubtractionSolid("PTFE_straight_interm",
+      solidPtfe_straight_interm,
+      solidPtfe_smallHole,
+      0,
+      G4ThreeVector(xp2,y0,0.));
+    // SECOND ROW (YP1)
+    solidPtfe_straight_interm = 
+    new G4SubtractionSolid("PTFE_straight_interm",
+      solidPtfe_straight_interm,
+      solidPtfe_smallHole,
+      0,
+      G4ThreeVector(x0,yp1,0.));
+    solidPtfe_straight_interm = 
+    new G4SubtractionSolid("PTFE_straight_interm",
+      solidPtfe_straight_interm,
+      solidPtfe_smallHole,
+      0,
+      G4ThreeVector(xm1,yp1,0.));
+    solidPtfe_straight_interm = 
+    new G4SubtractionSolid("PTFE_straight_interm",
+      solidPtfe_straight_interm,
+      solidPtfe_smallHole,
+      0,
+      G4ThreeVector(xp1,yp1,0.));
+    // THIRD ROW, WINGS (YM1)
+    solidPtfe_straight_interm = 
+    new G4SubtractionSolid("PTFE_straight_interm",
+      solidPtfe_straight_interm,
+      solidPtfe_smallHole,
+      0,
+      G4ThreeVector(xm3,ym1,0.));
+    solidPtfe_straight_interm = 
+    new G4SubtractionSolid("PTFE_straight_interm",
+      solidPtfe_straight_interm,
+      solidPtfe_smallHole,
+      0,
+      G4ThreeVector(xp3,ym1,0.));
+    // END, ATTACH TO SOLID
+    solidPtfe_straight = solidPtfe_straight_interm;
+  }
+
   G4VSolid* solidPtfe = 
     new G4SubtractionSolid("PTFE",
       solidPtfe_straight,
@@ -264,7 +346,7 @@ G4VPhysicalVolume* ptfe_detectorConstruction::Construct()
                       0,                     //copy number
                       checkOverlaps);        //overlaps checking
 // Give it a sensible colour
-  G4VisAttributes* collectionColour= new G4VisAttributes(G4Colour(0.05,0.05,0.75,0.5));
+  G4VisAttributes* collectionColour= new G4VisAttributes(G4Colour(0.05,0.05,0.75,0.1));
   logicCollection->SetVisAttributes(collectionColour);  
 
 

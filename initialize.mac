@@ -1,16 +1,11 @@
-/control/getEnv PTFE_SURFTYPE
-/ptfe/surface/surfaceType {PTFE_SURFTYPE}
+/control/getEnv MG4_HOLETYPE
+/control/getEnv MG4_HOLEWIDTH
+/control/getEnv MG4_OUTDIR
+/control/getEnv MG4_FILENAME
 
-/control/getEnv PTFE_DEPTH
-/ptfe/surface/contaminationDepth {PTFE_DEPTH} nm
-
-/control/getEnv PTFE_ONSURFACE
-/ptfe/surface/onSurface {PTFE_ONSURFACE}
-
-/control/getEnv PTFE_ANAROOT
-/control/getEnv PTFE_SURFTYPE
-/analysis/setFileName /Users/sdporzio/Data/Simulation_AlphaSourceVUVLamp/1mm_2M-ev
-
+/mg4/holeType {MG4_HOLETYPE}
+/mg4/holeWidth {MG4_HOLEWIDTH}
+/analysis/setFileName {MG4_OUTDIR}/{MG4_FILENAME}
 
 /control/execute mac/verbose_settings.mac
 /run/initialize
