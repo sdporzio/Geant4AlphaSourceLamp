@@ -217,7 +217,7 @@ G4VPhysicalVolume* ptfe_detectorConstruction::Construct()
       0,
       G4ThreeVector(0,-1*(mirror_diameter*0.5+smallHole_diameter*0.5),0)); 
   }
-  else
+  else if (fHoleType==1)
   {
     // Determine the whole set of coordinates
     double mir_rad = mirror_diameter*0.5;
@@ -302,6 +302,245 @@ G4VPhysicalVolume* ptfe_detectorConstruction::Construct()
     solidPtfe_straight = solidPtfe_straight_interm;
   }
 
+  else if (fHoleType==2)
+  {
+    std::map<int,float> xs;
+    std::map<int,float> ys;
+    G4VSolid* solidPtfe_straight_interm;
+
+    xs[-4] = -6.;
+    xs[-3] = -4.5;
+    xs[-2] = -3.;
+    xs[-1] = -1.5;
+    xs[0] = 0;
+    xs[1] = 1.5;
+    xs[2] = 3.;
+    xs[3] = 4.5;
+    xs[4] = 6.;
+
+    ys[0] = -15.2;
+    ys[1] = -14.7;
+    ys[2] = -14.2;
+    ys[3] = -13.7;
+    ys[4] = -13.2;
+    ys[5] = -12.7;
+    ys[6] = -12.2;
+
+  
+    // FIRST ROW (Y0)
+    solidPtfe_straight_interm = 
+    new G4SubtractionSolid("PTFE_straight_interm",
+      solidPtfe_ring,
+      solidPtfe_smallHole,
+      0,
+      G4ThreeVector(xs[0],ys[0],0.));
+    solidPtfe_straight_interm = 
+    new G4SubtractionSolid("PTFE_straight_interm",
+      solidPtfe_straight_interm,
+      solidPtfe_smallHole,
+      0,
+      G4ThreeVector(xs[1],ys[0],0.));
+    solidPtfe_straight_interm = 
+    new G4SubtractionSolid("PTFE_straight_interm",
+      solidPtfe_straight_interm,
+      solidPtfe_smallHole,
+      0,
+      G4ThreeVector(xs[-1],ys[0],0.));
+
+    // SECOND ROW
+    solidPtfe_straight_interm = 
+    new G4SubtractionSolid("PTFE_straight_interm",
+      solidPtfe_straight_interm,
+      solidPtfe_smallHole,
+      0,
+      G4ThreeVector(xs[0],ys[3],0.));
+    solidPtfe_straight_interm = 
+    new G4SubtractionSolid("PTFE_straight_interm",
+      solidPtfe_straight_interm,
+      solidPtfe_smallHole,
+      0,
+      G4ThreeVector(xs[1],ys[3],0.));
+    solidPtfe_straight_interm = 
+    new G4SubtractionSolid("PTFE_straight_interm",
+      solidPtfe_straight_interm,
+      solidPtfe_smallHole,
+      0,
+      G4ThreeVector(xs[-1],ys[3],0.));
+
+    // FIRST WING
+    solidPtfe_straight_interm = 
+    new G4SubtractionSolid("PTFE_straight_interm",
+      solidPtfe_straight_interm,
+      solidPtfe_smallHole,
+      0,
+      G4ThreeVector(xs[2],ys[1],0.));
+    solidPtfe_straight_interm = 
+    new G4SubtractionSolid("PTFE_straight_interm",
+      solidPtfe_straight_interm,
+      solidPtfe_smallHole,
+      0,
+      G4ThreeVector(xs[2],ys[4],0.));
+    solidPtfe_straight_interm = 
+    new G4SubtractionSolid("PTFE_straight_interm",
+      solidPtfe_straight_interm,
+      solidPtfe_smallHole,
+      0,
+      G4ThreeVector(xs[-2],ys[1],0.));
+    solidPtfe_straight_interm = 
+    new G4SubtractionSolid("PTFE_straight_interm",
+      solidPtfe_straight_interm,
+      solidPtfe_smallHole,
+      0,
+      G4ThreeVector(xs[-2],ys[4],0.));
+
+    // SECOND WING
+    solidPtfe_straight_interm = 
+    new G4SubtractionSolid("PTFE_straight_interm",
+      solidPtfe_straight_interm,
+      solidPtfe_smallHole,
+      0,
+      G4ThreeVector(xs[3],ys[2],0.));
+    solidPtfe_straight_interm = 
+    new G4SubtractionSolid("PTFE_straight_interm",
+      solidPtfe_straight_interm,
+      solidPtfe_smallHole,
+      0,
+      G4ThreeVector(xs[3],ys[5],0.));
+    solidPtfe_straight_interm = 
+    new G4SubtractionSolid("PTFE_straight_interm",
+      solidPtfe_straight_interm,
+      solidPtfe_smallHole,
+      0,
+      G4ThreeVector(xs[-3],ys[2],0.));
+    solidPtfe_straight_interm = 
+    new G4SubtractionSolid("PTFE_straight_interm",
+      solidPtfe_straight_interm,
+      solidPtfe_smallHole,
+      0,
+      G4ThreeVector(xs[-3],ys[5],0.));
+
+    // THIRD WING
+    solidPtfe_straight_interm = 
+    new G4SubtractionSolid("PTFE_straight_interm",
+      solidPtfe_straight_interm,
+      solidPtfe_smallHole,
+      0,
+      G4ThreeVector(xs[4],ys[3],0.));
+    solidPtfe_straight_interm = 
+    new G4SubtractionSolid("PTFE_straight_interm",
+      solidPtfe_straight_interm,
+      solidPtfe_smallHole,
+      0,
+      G4ThreeVector(xs[4],ys[6],0.));
+    solidPtfe_straight_interm = 
+    new G4SubtractionSolid("PTFE_straight_interm",
+      solidPtfe_straight_interm,
+      solidPtfe_smallHole,
+      0,
+      G4ThreeVector(xs[-4],ys[3],0.));
+    solidPtfe_straight_interm = 
+    new G4SubtractionSolid("PTFE_straight_interm",
+      solidPtfe_straight_interm,
+      solidPtfe_smallHole,
+      0,
+      G4ThreeVector(xs[-4],ys[6],0.));
+
+    // END, ATTACH TO SOLID
+    solidPtfe_straight = solidPtfe_straight_interm;
+  }
+
+  else if (fHoleType==3)
+  {
+    std::map<int,float> xs;
+    std::map<int,float> ys;
+    G4VSolid* solidPtfe_straight_interm;
+
+    xs[-4] = -6.;
+    xs[-3] = -4.5;
+    xs[-2] = -3.;
+    xs[-1] = -1.5;
+    xs[0] = 0;
+    xs[1] = 1.5;
+    xs[2] = 3.;
+    xs[3] = 4.5;
+    xs[4] = 6.;
+
+    ys[0] = -15.2;
+    ys[1] = -14.7;
+    ys[2] = -14.2;
+    ys[3] = -13.7;
+    ys[4] = -13.2;
+    ys[5] = -12.7;
+    ys[6] = -12.2;
+
+  
+    // SECOND ROW
+    solidPtfe_straight_interm = 
+    new G4SubtractionSolid("PTFE_straight_interm",
+      solidPtfe_ring,
+      solidPtfe_smallHole,
+      0,
+      G4ThreeVector(xs[0],ys[3],0.));
+    solidPtfe_straight_interm = 
+    new G4SubtractionSolid("PTFE_straight_interm",
+      solidPtfe_straight_interm,
+      solidPtfe_smallHole,
+      0,
+      G4ThreeVector(xs[1],ys[3],0.));
+    solidPtfe_straight_interm = 
+    new G4SubtractionSolid("PTFE_straight_interm",
+      solidPtfe_straight_interm,
+      solidPtfe_smallHole,
+      0,
+      G4ThreeVector(xs[-1],ys[3],0.));
+
+    // FIRST WING
+    solidPtfe_straight_interm = 
+    new G4SubtractionSolid("PTFE_straight_interm",
+      solidPtfe_straight_interm,
+      solidPtfe_smallHole,
+      0,
+      G4ThreeVector(xs[2],ys[4],0.));
+    solidPtfe_straight_interm = 
+    new G4SubtractionSolid("PTFE_straight_interm",
+      solidPtfe_straight_interm,
+      solidPtfe_smallHole,
+      0,
+      G4ThreeVector(xs[-2],ys[4],0.));
+
+    // SECOND WING
+    solidPtfe_straight_interm = 
+    new G4SubtractionSolid("PTFE_straight_interm",
+      solidPtfe_straight_interm,
+      solidPtfe_smallHole,
+      0,
+      G4ThreeVector(xs[3],ys[5],0.));
+    solidPtfe_straight_interm = 
+    new G4SubtractionSolid("PTFE_straight_interm",
+      solidPtfe_straight_interm,
+      solidPtfe_smallHole,
+      0,
+      G4ThreeVector(xs[-3],ys[5],0.));
+
+    // THIRD WING
+    solidPtfe_straight_interm = 
+    new G4SubtractionSolid("PTFE_straight_interm",
+      solidPtfe_straight_interm,
+      solidPtfe_smallHole,
+      0,
+      G4ThreeVector(xs[4],ys[6],0.));
+    solidPtfe_straight_interm = 
+    new G4SubtractionSolid("PTFE_straight_interm",
+      solidPtfe_straight_interm,
+      solidPtfe_smallHole,
+      0,
+      G4ThreeVector(xs[-4],ys[6],0.));
+
+    // END, ATTACH TO SOLID
+    solidPtfe_straight = solidPtfe_straight_interm;
+  }
+
+
   G4VSolid* solidPtfe = 
     new G4SubtractionSolid("PTFE",
       solidPtfe_straight,
@@ -317,7 +556,7 @@ G4VPhysicalVolume* ptfe_detectorConstruction::Construct()
                       G4ThreeVector(0,0,mirrorPtfe_offset),       //at (0,0,0)
                       logicPtfe,            //logical volume
                       "PTFE",               //name
-                      logicWorld,                     //mother  volume
+                      logicWorld,           //mother  volume
                       false,                 //no boolean operation
                       0,                     //copy number
                       checkOverlaps);        //overlaps checking

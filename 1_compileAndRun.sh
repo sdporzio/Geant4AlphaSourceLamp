@@ -1,9 +1,10 @@
-export MG4_NEVENTS=10000
+export MG4_NEVENTS=100
 export MG4_RANDOMSEED=100
-export MG4_VISUAL=0
-export MG4_HOLETYPE=1
-export MG4_HOLEWIDTH=${1}
-export MG4_OUTDIR="/global/project/projectdirs/lz/users/sdporzio/Data/AlphaSourceVUVLamp"
+export MG4_VISUAL=1
+export MG4_HOLETYPE=2
+export MG4_HOLEWIDTH=1
+# export MG4_OUTDIR="/global/project/projectdirs/lz/users/sdporzio/Data/AlphaSourceVUVLamp"
+export MG4_OUTDIR="/Users/sdporzio/Data/Temp"
 export MG4_FILENAME="${MG4_HOLEWIDTH}-w_${MG4_NEVENTS}-ev_${MG4_RANDOMSEED}-s.root"
 
 

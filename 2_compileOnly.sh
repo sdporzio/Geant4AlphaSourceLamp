@@ -1,4 +1,4 @@
-if [ "$GAL" == "/Users/sdporzio/Work/MOUNT/GALILEO" ]
+if [ "$GAL" == "/Users/sdporzio/MOUNT/GALILEO" ]
 then
   source /Users/sdporzio/Software/geant4.10.06.p01/install/bin/geant4.sh
 else
