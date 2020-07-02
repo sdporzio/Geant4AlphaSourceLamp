@@ -1,14 +1,11 @@
-screen -dmS 1.5mm_multi bash -c "/global/project/projectdirs/lz/users/sdporzio/AlphaSourceLamp/3_runOnly.sh 1 1.5"
+screen -dmS 1.2mm bash -c "/global/project/projectdirs/lz/users/sdporzio/AlphaSourceLamp/3_runOnly.sh 0 1.2"
 sleep 1
 
-screen -dmS 1mm bash -c "/global/project/projectdirs/lz/users/sdporzio/AlphaSourceLamp/3_runOnly.sh 0 1"
+screen -dmS 1.4mm bash -c "/global/project/projectdirs/lz/users/sdporzio/AlphaSourceLamp/3_runOnly.sh 0 1.4"
 sleep 1
 
-screen -dmS 1.5mm bash -c "/global/project/projectdirs/lz/users/sdporzio/AlphaSourceLamp/3_runOnly.sh 0 4"
+screen -dmS 1.6mm bash -c "/global/project/projectdirs/lz/users/sdporzio/AlphaSourceLamp/3_runOnly.sh 0 1.6"
 sleep 1
 
-screen -dmS 2mm bash -c "/global/project/projectdirs/lz/users/sdporzio/AlphaSourceLamp/3_runOnly.sh 0 2"
-sleep 1
-
-screen -dmS 3mm bash -c "/global/project/projectdirs/lz/users/sdporzio/AlphaSourceLamp/3_runOnly.sh 0 3"
+screen -dmS 1.8mm bash -c "/global/project/projectdirs/lz/users/sdporzio/AlphaSourceLamp/3_runOnly.sh 0 1.8"
 sleep 1
