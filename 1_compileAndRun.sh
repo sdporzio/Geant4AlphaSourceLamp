@@ -1,7 +1,7 @@
 export MG4_NEVENTS=100
 export MG4_RANDOMSEED=100
 export MG4_VISUAL=1
-export MG4_HOLETYPE=2
+export MG4_HOLETYPE=3
 export MG4_HOLEWIDTH=1
 # export MG4_OUTDIR="/global/project/projectdirs/lz/users/sdporzio/Data/AlphaSourceVUVLamp"
 export MG4_OUTDIR="/Users/sdporzio/Data/Temp"
