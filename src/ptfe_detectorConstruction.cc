@@ -52,17 +52,19 @@ G4VPhysicalVolume* ptfe_detectorConstruction::Construct()
   G4Material* xenon = materials->MakeGasXe();
 
   // SIZES
-  G4double disc_diameter = 15*mm;
-  G4double disc_thickness = 5*mm;
-  G4double active_diameter = 15*mm-0.5*mm;
+  G4double disc_diameter = 12*mm;
+  G4double disc_thickness = 0.5*mm;
+  G4double active_diameter = 8*mm;
   G4double active_thickness = 5*um;
-  G4double mirror_diameter = 25.4*mm;
-  G4double mirror_edgeThickness = 7.6*mm;
-  G4double mirror_centerThickness = 7.6*mm;
   G4double ptfe_diameter = 40*mm;
-  G4double ptfe_thickness = 15*mm;
+  G4double ptfe_thickness = 20*mm;
   G4double smallHole_diameter = fHoleWidth*mm;
+
   G4double curvature_radius = 50*mm;
+
+  G4double mirror_diameter = 25.4*mm; // 1 inch
+  G4double mirror_centerThickness = 6*mm;
+  G4double mirror_edgeThickness = 7.6*mm; // Arbitrary, will be carved out
   G4double collection_thickness = 30*mm;
 
   G4double mirrorPtfe_offset = ptfe_thickness*0.5-mirror_edgeThickness*0.5;
@@ -159,7 +161,7 @@ G4VPhysicalVolume* ptfe_detectorConstruction::Construct()
       solidMirror_straight,
       solidCurvature,
       0,
-      G4ThreeVector(0,0,curvature_radius-mirror_edgeThickness*0.5+mirror_centerThickness*0.5));
+      G4ThreeVector(0,0,curvature_radius - mirror_edgeThickness/2. + mirror_centerThickness));
 
   G4LogicalVolume* logicMirror =                         
     new G4LogicalVolume(solidMirror,             //solid
@@ -190,7 +192,7 @@ G4VPhysicalVolume* ptfe_detectorConstruction::Construct()
     new G4Tubs("PTFE_hole",                                           //name
        0.0*mm,
        mirror_diameter*0.5,
-       ptfe_thickness*0.75,
+       ptfe_thickness,
        0,
        M_PI*2.);     //size
   G4Tubs* solidPtfe_smallHole =    
@@ -393,57 +395,57 @@ G4VPhysicalVolume* ptfe_detectorConstruction::Construct()
       0,
       G4ThreeVector(xs[-2],ys[4],0.));
 
-    // SECOND WING
-    solidPtfe_straight_interm = 
-    new G4SubtractionSolid("PTFE_straight_interm",
-      solidPtfe_straight_interm,
-      solidPtfe_smallHole,
-      0,
-      G4ThreeVector(xs[3],ys[2],0.));
-    solidPtfe_straight_interm = 
-    new G4SubtractionSolid("PTFE_straight_interm",
-      solidPtfe_straight_interm,
-      solidPtfe_smallHole,
-      0,
-      G4ThreeVector(xs[3],ys[5],0.));
-    solidPtfe_straight_interm = 
-    new G4SubtractionSolid("PTFE_straight_interm",
-      solidPtfe_straight_interm,
-      solidPtfe_smallHole,
-      0,
-      G4ThreeVector(xs[-3],ys[2],0.));
-    solidPtfe_straight_interm = 
-    new G4SubtractionSolid("PTFE_straight_interm",
-      solidPtfe_straight_interm,
-      solidPtfe_smallHole,
-      0,
-      G4ThreeVector(xs[-3],ys[5],0.));
+    // // SECOND WING
+    // solidPtfe_straight_interm = 
+    // new G4SubtractionSolid("PTFE_straight_interm",
+    //   solidPtfe_straight_interm,
+    //   solidPtfe_smallHole,
+    //   0,
+    //   G4ThreeVector(xs[3],ys[2],0.));
+    // solidPtfe_straight_interm = 
+    // new G4SubtractionSolid("PTFE_straight_interm",
+    //   solidPtfe_straight_interm,
+    //   solidPtfe_smallHole,
+    //   0,
+    //   G4ThreeVector(xs[3],ys[5],0.));
+    // solidPtfe_straight_interm = 
+    // new G4SubtractionSolid("PTFE_straight_interm",
+    //   solidPtfe_straight_interm,
+    //   solidPtfe_smallHole,
+    //   0,
+    //   G4ThreeVector(xs[-3],ys[2],0.));
+    // solidPtfe_straight_interm = 
+    // new G4SubtractionSolid("PTFE_straight_interm",
+    //   solidPtfe_straight_interm,
+    //   solidPtfe_smallHole,
+    //   0,
+    //   G4ThreeVector(xs[-3],ys[5],0.));
 
-    // THIRD WING
-    solidPtfe_straight_interm = 
-    new G4SubtractionSolid("PTFE_straight_interm",
-      solidPtfe_straight_interm,
-      solidPtfe_smallHole,
-      0,
-      G4ThreeVector(xs[4],ys[3],0.));
-    solidPtfe_straight_interm = 
-    new G4SubtractionSolid("PTFE_straight_interm",
-      solidPtfe_straight_interm,
-      solidPtfe_smallHole,
-      0,
-      G4ThreeVector(xs[4],ys[6],0.));
-    solidPtfe_straight_interm = 
-    new G4SubtractionSolid("PTFE_straight_interm",
-      solidPtfe_straight_interm,
-      solidPtfe_smallHole,
-      0,
-      G4ThreeVector(xs[-4],ys[3],0.));
-    solidPtfe_straight_interm = 
-    new G4SubtractionSolid("PTFE_straight_interm",
-      solidPtfe_straight_interm,
-      solidPtfe_smallHole,
-      0,
-      G4ThreeVector(xs[-4],ys[6],0.));
+    // // THIRD WING
+    // solidPtfe_straight_interm = 
+    // new G4SubtractionSolid("PTFE_straight_interm",
+    //   solidPtfe_straight_interm,
+    //   solidPtfe_smallHole,
+    //   0,
+    //   G4ThreeVector(xs[4],ys[3],0.));
+    // solidPtfe_straight_interm = 
+    // new G4SubtractionSolid("PTFE_straight_interm",
+    //   solidPtfe_straight_interm,
+    //   solidPtfe_smallHole,
+    //   0,
+    //   G4ThreeVector(xs[4],ys[6],0.));
+    // solidPtfe_straight_interm = 
+    // new G4SubtractionSolid("PTFE_straight_interm",
+    //   solidPtfe_straight_interm,
+    //   solidPtfe_smallHole,
+    //   0,
+    //   G4ThreeVector(xs[-4],ys[3],0.));
+    // solidPtfe_straight_interm = 
+    // new G4SubtractionSolid("PTFE_straight_interm",
+    //   solidPtfe_straight_interm,
+    //   solidPtfe_smallHole,
+    //   0,
+    //   G4ThreeVector(xs[-4],ys[6],0.));
 
     // END, ATTACH TO SOLID
     solidPtfe_straight = solidPtfe_straight_interm;
@@ -508,33 +510,33 @@ G4VPhysicalVolume* ptfe_detectorConstruction::Construct()
       0,
       G4ThreeVector(xs[-2],ys[4],0.));
 
-    // SECOND WING
-    solidPtfe_straight_interm = 
-    new G4SubtractionSolid("PTFE_straight_interm",
-      solidPtfe_straight_interm,
-      solidPtfe_smallHole,
-      0,
-      G4ThreeVector(xs[3],ys[5],0.));
-    solidPtfe_straight_interm = 
-    new G4SubtractionSolid("PTFE_straight_interm",
-      solidPtfe_straight_interm,
-      solidPtfe_smallHole,
-      0,
-      G4ThreeVector(xs[-3],ys[5],0.));
+    // // SECOND WING
+    // solidPtfe_straight_interm = 
+    // new G4SubtractionSolid("PTFE_straight_interm",
+    //   solidPtfe_straight_interm,
+    //   solidPtfe_smallHole,
+    //   0,
+    //   G4ThreeVector(xs[3],ys[5],0.));
+    // solidPtfe_straight_interm = 
+    // new G4SubtractionSolid("PTFE_straight_interm",
+    //   solidPtfe_straight_interm,
+    //   solidPtfe_smallHole,
+    //   0,
+    //   G4ThreeVector(xs[-3],ys[5],0.));
 
-    // THIRD WING
-    solidPtfe_straight_interm = 
-    new G4SubtractionSolid("PTFE_straight_interm",
-      solidPtfe_straight_interm,
-      solidPtfe_smallHole,
-      0,
-      G4ThreeVector(xs[4],ys[6],0.));
-    solidPtfe_straight_interm = 
-    new G4SubtractionSolid("PTFE_straight_interm",
-      solidPtfe_straight_interm,
-      solidPtfe_smallHole,
-      0,
-      G4ThreeVector(xs[-4],ys[6],0.));
+    // // THIRD WING
+    // solidPtfe_straight_interm = 
+    // new G4SubtractionSolid("PTFE_straight_interm",
+    //   solidPtfe_straight_interm,
+    //   solidPtfe_smallHole,
+    //   0,
+    //   G4ThreeVector(xs[4],ys[6],0.));
+    // solidPtfe_straight_interm = 
+    // new G4SubtractionSolid("PTFE_straight_interm",
+    //   solidPtfe_straight_interm,
+    //   solidPtfe_smallHole,
+    //   0,
+    //   G4ThreeVector(xs[-4],ys[6],0.));
 
     // END, ATTACH TO SOLID
     solidPtfe_straight = solidPtfe_straight_interm;
@@ -546,29 +548,29 @@ G4VPhysicalVolume* ptfe_detectorConstruction::Construct()
       solidPtfe_straight,
       solidCurvature,
       0,
-      G4ThreeVector(0,0,curvature_radius-mirror_edgeThickness*0.5+mirror_centerThickness*0.5-mirrorPtfe_offset));
+      G4ThreeVector(0,0,curvature_radius-ptfe_thickness*0.5+mirror_centerThickness));
   G4LogicalVolume* logicPtfe =                         
     new G4LogicalVolume(solidPtfe,             //solid
                         ptfe,           //material
                         "PTFE");               //name                         
-  G4VPhysicalVolume* physPtfe = 
-    new G4PVPlacement(0,                     //no rotation
-                      G4ThreeVector(0,0,mirrorPtfe_offset),       //at (0,0,0)
-                      logicPtfe,            //logical volume
-                      "PTFE",               //name
-                      logicWorld,           //mother  volume
-                      false,                 //no boolean operation
-                      0,                     //copy number
-                      checkOverlaps);        //overlaps checking
-  // Give it a sensible colour
-  G4VisAttributes* ptfeColour= new G4VisAttributes(G4Colour(0.75,0.75,0.75,1));
-  logicPtfe->SetVisAttributes(ptfeColour);  
+  // G4VPhysicalVolume* physPtfe = 
+  //   new G4PVPlacement(0,                     //no rotation
+  //                     G4ThreeVector(0,0,mirrorPtfe_offset),       //at (0,0,0)
+  //                     logicPtfe,            //logical volume
+  //                     "PTFE",               //name
+  //                     logicWorld,           //mother  volume
+  //                     false,                 //no boolean operation
+  //                     0,                     //copy number
+  //                     checkOverlaps);        //overlaps checking
+  // // Give it a sensible colour
+  // G4VisAttributes* ptfeColour= new G4VisAttributes(G4Colour(0.75,0.75,0.75,1));
+  // logicPtfe->SetVisAttributes(ptfeColour);  
 
   G4Tubs* solidCollection =    
     new G4Tubs("Collection",                                           //name
        0,
        ptfe_diameter*0.5,
-       collection_thickness*0.5,
+       collection_thickness*0.5, 
        0,
        M_PI*2.);     //size   
   G4LogicalVolume* logicCollection =                         
@@ -577,7 +579,7 @@ G4VPhysicalVolume* ptfe_detectorConstruction::Construct()
                         "Collection");               //name                         
   G4VPhysicalVolume* physCollection = 
     new G4PVPlacement(0,                     //no rotation
-                      G4ThreeVector(0,0,collection_thickness*0.5+ptfe_thickness*0.5 - 3*mm),       //at (0,0,0)
+                      G4ThreeVector(0,0,collection_thickness*0.5+ptfe_thickness*0.5 - 5.5*mm),       //at (0,0,0)
                       logicCollection,            //logical volume
                       "Collection",               //name
                       logicWorld,                     //mother  volume
@@ -585,7 +587,7 @@ G4VPhysicalVolume* ptfe_detectorConstruction::Construct()
                       0,                     //copy number
                       checkOverlaps);        //overlaps checking
 // Give it a sensible colour
-  G4VisAttributes* collectionColour= new G4VisAttributes(G4Colour(0.05,0.05,0.75,0.1));
+  G4VisAttributes* collectionColour= new G4VisAttributes(G4Colour(0.05,0.05,0.75,0));
   logicCollection->SetVisAttributes(collectionColour);  
 
 
