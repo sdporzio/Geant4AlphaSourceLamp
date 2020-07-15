@@ -217,7 +217,7 @@ G4VPhysicalVolume* ptfe_detectorConstruction::Construct()
       solidPtfe_ring,
       solidPtfe_smallHole,
       0,
-      G4ThreeVector(0,-1*(mirror_diameter*0.5+smallHole_diameter*0.5),0)); 
+      G4ThreeVector(0,-1*(mirror_diameter*0.5+smallHole_diameter*0.5+0.5*mm),0)); 
   }
   else if (fHoleType==1)
   {
@@ -553,18 +553,18 @@ G4VPhysicalVolume* ptfe_detectorConstruction::Construct()
     new G4LogicalVolume(solidPtfe,             //solid
                         ptfe,           //material
                         "PTFE");               //name                         
-  // G4VPhysicalVolume* physPtfe = 
-  //   new G4PVPlacement(0,                     //no rotation
-  //                     G4ThreeVector(0,0,mirrorPtfe_offset),       //at (0,0,0)
-  //                     logicPtfe,            //logical volume
-  //                     "PTFE",               //name
-  //                     logicWorld,           //mother  volume
-  //                     false,                 //no boolean operation
-  //                     0,                     //copy number
-  //                     checkOverlaps);        //overlaps checking
-  // // Give it a sensible colour
-  // G4VisAttributes* ptfeColour= new G4VisAttributes(G4Colour(0.75,0.75,0.75,1));
-  // logicPtfe->SetVisAttributes(ptfeColour);  
+  G4VPhysicalVolume* physPtfe = 
+    new G4PVPlacement(0,                     //no rotation
+                      G4ThreeVector(0,0,mirrorPtfe_offset),       //at (0,0,0)
+                      logicPtfe,            //logical volume
+                      "PTFE",               //name
+                      logicWorld,           //mother  volume
+                      false,                 //no boolean operation
+                      0,                     //copy number
+                      checkOverlaps);        //overlaps checking
+  // Give it a sensible colour
+  G4VisAttributes* ptfeColour= new G4VisAttributes(G4Colour(0.75,0.75,0.75,1));
+  logicPtfe->SetVisAttributes(ptfeColour);  
 
   G4Tubs* solidCollection =    
     new G4Tubs("Collection",                                           //name
