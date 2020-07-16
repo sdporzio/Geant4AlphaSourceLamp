@@ -579,7 +579,7 @@ G4VPhysicalVolume* ptfe_detectorConstruction::Construct()
                         "Collection");               //name                         
   G4VPhysicalVolume* physCollection = 
     new G4PVPlacement(0,                     //no rotation
-                      G4ThreeVector(0,0,collection_thickness*0.5+ptfe_thickness*0.5 - 5.5*mm),       //at (0,0,0)
+                      G4ThreeVector(0,0,collection_thickness*0.5 - 3.5),       //at (0,0,0)
                       logicCollection,            //logical volume
                       "Collection",               //name
                       logicWorld,                     //mother  volume
