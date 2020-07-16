@@ -43,6 +43,7 @@ void ptfe_steppingAction::UserSteppingAction(const G4Step* step)
     ptfe_anaTrack thisTrack;
     fEventAction->fAnaTrack[track_id] = thisTrack;
     fEventAction->fAnaTrack[track_id].trackId = track_id;
+    fEventAction->fAnaTrack[track_id].enteredHole = false;
     fEventAction->fAnaTrack[track_id].enteredCollection = false;
     fEventAction->fAnaTrack[track_id].exitedCollection = false;
 
@@ -89,6 +90,8 @@ void ptfe_steppingAction::UserSteppingAction(const G4Step* step)
   // if not, just update the end quantities
   else
   {
+    // Check if particle made it to the hole
+    if(prepoint->GetPosition()[2]/CLHEP::mm > -3.75) fEventAction->fAnaTrack[track_id].enteredHole = true;
     // Check if particle made it to collection
     if(volumeName=="Collection") fEventAction->fAnaTrack[track_id].enteredCollection = true;
     // At this point check if particle previously made it to collection volume but now exited it

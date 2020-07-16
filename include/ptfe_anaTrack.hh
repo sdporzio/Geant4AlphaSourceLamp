@@ -23,7 +23,7 @@ class ptfe_anaTrack
     G4String volumeStart, volumeEnd;
     G4double distTravelled;
     G4double enDeposited_tot;
-    G4bool enteredCollection, exitedCollection;
+    G4bool enteredHole, enteredCollection, exitedCollection;
 };
 
 #endif

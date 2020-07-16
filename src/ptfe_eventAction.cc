@@ -94,7 +94,8 @@ void ptfe_eventAction::EndOfEventAction(const G4Event* event)
     G4int j = 0;
     auto thisTrack = fAnaTrack[thisId.first];
 
-    if(thisTrack.enteredCollection)
+    // if(thisTrack.enteredCollection)
+    if(thisTrack.enteredHole)
     {
       analysisManager->FillNtupleIColumn(2,j,event->GetEventID()); j+=1;
       analysisManager->FillNtupleSColumn(2,j,thisTrack.name); j+=1;

@@ -579,7 +579,7 @@ G4VPhysicalVolume* ptfe_detectorConstruction::Construct()
                         "Collection");               //name                         
   G4VPhysicalVolume* physCollection = 
     new G4PVPlacement(0,                     //no rotation
-                      G4ThreeVector(0,0,collection_thickness*0.5 - 3.5),       //at (0,0,0)
+                      G4ThreeVector(0,0,collection_thickness*0.5+ptfe_thickness*0.5 - 3.5*mm),       //at (0,0,0)
                       logicCollection,            //logical volume
                       "Collection",               //name
                       logicWorld,                     //mother  volume
@@ -587,7 +587,7 @@ G4VPhysicalVolume* ptfe_detectorConstruction::Construct()
                       0,                     //copy number
                       checkOverlaps);        //overlaps checking
 // Give it a sensible colour
-  G4VisAttributes* collectionColour= new G4VisAttributes(G4Colour(0.05,0.05,0.75,0));
+  G4VisAttributes* collectionColour= new G4VisAttributes(G4Colour(0.05,0.05,0.75,0.4));
   logicCollection->SetVisAttributes(collectionColour);  
 
 
