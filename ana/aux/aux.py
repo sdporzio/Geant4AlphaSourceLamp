@@ -47,3 +47,5 @@ def EleDriftTime(rho, deltaV=1500, step=0.05, r_a=0.25):
       this_time = step/speed
       time += this_time
   return time
+
+  

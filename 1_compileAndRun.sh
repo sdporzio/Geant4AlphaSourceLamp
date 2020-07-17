@@ -1,4 +1,4 @@
-export MG4_NEVENTS=100
+export MG4_NEVENTS=0
 export MG4_RANDOMSEED=100
 export MG4_VISUAL=1
 export MG4_HOLETYPE=3

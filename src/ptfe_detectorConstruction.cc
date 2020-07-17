@@ -111,18 +111,18 @@ G4VPhysicalVolume* ptfe_detectorConstruction::Construct()
     new G4LogicalVolume(solidDisc,             //solid
                         alum,           //material
                         "Disc");               //name                         
-  G4VPhysicalVolume* physDisc = 
-    new G4PVPlacement(0,                     //no rotation
-                      G4ThreeVector(0,-1*(ptfe_diameter*0.5-disc_diameter*0.5),-1*(ptfe_thickness*0.5+disc_thickness*0.5)+mirrorPtfe_offset),       //at (0,0,0)
-                      logicDisc,            //logical volume
-                      "Disc",               //name
-                      logicWorld,                     //mother  volume
-                      false,                 //no boolean operation
-                      0,                     //copy number
-                      checkOverlaps);        //overlaps checking
-  // Give it a sensible colour
-  G4VisAttributes* discColour= new G4VisAttributes(G4Colour(0.75,0.25,0.25,1));
-  logicDisc->SetVisAttributes(discColour);
+  // G4VPhysicalVolume* physDisc = 
+  //   new G4PVPlacement(0,                     //no rotation
+  //                     G4ThreeVector(0,-1*(ptfe_diameter*0.5-disc_diameter*0.5),-1*(ptfe_thickness*0.5+disc_thickness*0.5)+mirrorPtfe_offset),       //at (0,0,0)
+  //                     logicDisc,            //logical volume
+  //                     "Disc",               //name
+  //                     logicWorld,                     //mother  volume
+  //                     false,                 //no boolean operation
+  //                     0,                     //copy number
+  //                     checkOverlaps);        //overlaps checking
+  // // Give it a sensible colour
+  // G4VisAttributes* discColour= new G4VisAttributes(G4Colour(0.75,0.25,0.25,1));
+  // logicDisc->SetVisAttributes(discColour);
   // ALUMINUM SOURCE ACTIVE DISC
   G4Tubs* solidActive =    
     new G4Tubs("Active",                                           //name
@@ -135,18 +135,18 @@ G4VPhysicalVolume* ptfe_detectorConstruction::Construct()
     new G4LogicalVolume(solidActive,             //solid
                         alum,           //material
                         "Active");               //name                         
-  G4VPhysicalVolume* physActive = 
-    new G4PVPlacement(0,                     //no rotation
-                      G4ThreeVector(0,0,disc_thickness*0.5),       //at (0,0,0)
-                      logicActive,            //logical volume
-                      "Active",               //name
-                      logicDisc,                     //mother  volume
-                      false,                 //no boolean operation
-                      0,                     //copy number
-                      checkOverlaps);        //overlaps checking
-  // Give it a sensible colour
-  G4VisAttributes* activeColour= new G4VisAttributes(G4Colour(0.25,0.05,0.05,1));
-  logicActive->SetVisAttributes(activeColour);    
+  // G4VPhysicalVolume* physActive = 
+  //   new G4PVPlacement(0,                     //no rotation
+  //                     G4ThreeVector(0,0,disc_thickness*0.5),       //at (0,0,0)
+  //                     logicActive,            //logical volume
+  //                     "Active",               //name
+  //                     logicDisc,                     //mother  volume
+  //                     false,                 //no boolean operation
+  //                     0,                     //copy number
+  //                     checkOverlaps);        //overlaps checking
+  // // Give it a sensible colour
+  // G4VisAttributes* activeColour= new G4VisAttributes(G4Colour(0.25,0.05,0.05,1));
+  // logicActive->SetVisAttributes(activeColour);    
 
   // MIRROR
   G4Tubs* solidMirror_straight =    
@@ -167,18 +167,18 @@ G4VPhysicalVolume* ptfe_detectorConstruction::Construct()
     new G4LogicalVolume(solidMirror,             //solid
                         glass,           //material
                         "Mirror");               //name                         
-  G4VPhysicalVolume* physMirror = 
-    new G4PVPlacement(0,                     //no rotation
-                      G4ThreeVector(),       //at (0,0,0)
-                      logicMirror,            //logical volume
-                      "Mirror",               //name
-                      logicWorld,                     //mother  volume
-                      false,                 //no boolean operation
-                      0,                     //copy number
-                      checkOverlaps);        //overlaps checking
-  // Give it a sensible colour
-  G4VisAttributes* mirrorColour= new G4VisAttributes(G4Colour(0.25,0.25,0.75,1));
-  logicMirror->SetVisAttributes(mirrorColour);  
+  // G4VPhysicalVolume* physMirror = 
+  //   new G4PVPlacement(0,                     //no rotation
+  //                     G4ThreeVector(),       //at (0,0,0)
+  //                     logicMirror,            //logical volume
+  //                     "Mirror",               //name
+  //                     logicWorld,                     //mother  volume
+  //                     false,                 //no boolean operation
+  //                     0,                     //copy number
+  //                     checkOverlaps);        //overlaps checking
+  // // Give it a sensible colour
+  // G4VisAttributes* mirrorColour= new G4VisAttributes(G4Colour(0.25,0.25,0.75,1));
+  // logicMirror->SetVisAttributes(mirrorColour);  
 
   // PTFE
   G4Tubs* solidPtfe_full =    
@@ -577,18 +577,18 @@ G4VPhysicalVolume* ptfe_detectorConstruction::Construct()
     new G4LogicalVolume(solidCollection,             //solid
                         xenon,           //material
                         "Collection");               //name                         
-  G4VPhysicalVolume* physCollection = 
-    new G4PVPlacement(0,                     //no rotation
-                      G4ThreeVector(0,0,collection_thickness*0.5+ptfe_thickness*0.5 - 3.5*mm),       //at (0,0,0)
-                      logicCollection,            //logical volume
-                      "Collection",               //name
-                      logicWorld,                     //mother  volume
-                      false,                 //no boolean operation
-                      0,                     //copy number
-                      checkOverlaps);        //overlaps checking
-// Give it a sensible colour
-  G4VisAttributes* collectionColour= new G4VisAttributes(G4Colour(0.05,0.05,0.75,0.4));
-  logicCollection->SetVisAttributes(collectionColour);  
+//   G4VPhysicalVolume* physCollection = 
+//     new G4PVPlacement(0,                     //no rotation
+//                       G4ThreeVector(0,0,collection_thickness*0.5+ptfe_thickness*0.5 - 3.5*mm),       //at (0,0,0)
+//                       logicCollection,            //logical volume
+//                       "Collection",               //name
+//                       logicWorld,                     //mother  volume
+//                       false,                 //no boolean operation
+//                       0,                     //copy number
+//                       checkOverlaps);        //overlaps checking
+// // Give it a sensible colour
+//   G4VisAttributes* collectionColour= new G4VisAttributes(G4Colour(0.05,0.05,0.75,0.4));
+//   logicCollection->SetVisAttributes(collectionColour);  
 
 
 
