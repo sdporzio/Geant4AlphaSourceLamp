@@ -3,9 +3,11 @@ export MG4_RANDOMSEED=100
 export MG4_VISUAL=1
 export MG4_HOLETYPE=3
 export MG4_HOLEWIDTH=1
+export MG4_HOLEOFFSET=0.
+export MG4_LABEL="Standard"
 # export MG4_OUTDIR="/global/project/projectdirs/lz/users/sdporzio/Data/AlphaSourceVUVLamp"
 export MG4_OUTDIR="/Users/sdporzio/Data/Temp"
-export MG4_FILENAME="${MG4_HOLEWIDTH}-w_${MG4_NEVENTS}-ev_${MG4_RANDOMSEED}-s.root"
+export MG4_FILENAME="${MG4_HOLEOFFSET}-off_${MG4_NEVENTS}-ev_${MG4_RANDOMSEED}-s.root"
 
 
 if [ "$GAL" == "/Users/sdporzio/MOUNT/GALILEO" ]
@@ -16,4 +18,4 @@ else
 fi
 cd build
 cmake ../
-make -j 4 && ./main ${MG4_NEVENTS} ${MG4_RANDOMSEED} ${MG4_VISUAL}
+make -j 4 && ./main ${MG4_NEVENTS} ${MG4_RANDOMSEED} ${MG4_VISUAL} 

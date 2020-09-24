@@ -1,10 +1,12 @@
 /control/getEnv MG4_HOLETYPE
 /control/getEnv MG4_HOLEWIDTH
+/control/getEnv MG4_HOLEOFFSET
 /control/getEnv MG4_OUTDIR
 /control/getEnv MG4_FILENAME
 
 /mg4/holeType {MG4_HOLETYPE}
 /mg4/holeWidth {MG4_HOLEWIDTH}
+/mg4/holeOffset {MG4_HOLEOFFSET}
 /analysis/setFileName {MG4_OUTDIR}/{MG4_FILENAME}
 
 /control/execute mac/verbose_settings.mac

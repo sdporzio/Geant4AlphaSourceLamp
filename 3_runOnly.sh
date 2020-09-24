@@ -1,10 +1,12 @@
 export MG4_NEVENTS=100000
 export MG4_RANDOMSEED=100
 export MG4_VISUAL=0
-export MG4_HOLETYPE=${1}
-export MG4_HOLEWIDTH=${2}
+export MG4_HOLETYPE=3
+export MG4_HOLEWIDTH=1
+export MG4_HOLEOFFSET={$1}
+
 export MG4_OUTDIR="/global/project/projectdirs/lz/users/sdporzio/Data/AlphaSourceVUVLamp"
-export MG4_FILENAME="t-${MG4_HOLETYPE}_w-${MG4_HOLEWIDTH}_ev-${MG4_NEVENTS}_s-${MG4_RANDOMSEED}.root"
+export MG4_FILENAME="${MG4_HOLEOFFSET}-off_${MG4_NEVENTS}-ev_${MG4_RANDOMSEED}-s.root"
 
 # Shifter
 # /usr/bin/shifter --module=cvmfs --image=luxzeplin/offline_hosted:centos7 bash --rcfile ~/.bashrc.ext

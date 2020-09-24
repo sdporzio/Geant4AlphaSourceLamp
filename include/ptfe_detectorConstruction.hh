@@ -21,6 +21,7 @@ class ptfe_detectorConstruction : public G4VUserDetectorConstruction
     G4GenericMessenger* fMessenger; // Generic messenger class
     G4int fHoleType;
     G4float fHoleWidth;
+    G4float fHoleOffset;
 
 };
 
