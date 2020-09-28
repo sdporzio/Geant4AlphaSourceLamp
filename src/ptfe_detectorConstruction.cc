@@ -55,9 +55,10 @@ G4VPhysicalVolume* ptfe_detectorConstruction::Construct()
   // SIZES
   G4double disc_diameter = 12*mm;
   G4double disc_thickness = 0.5*mm;
+  G4double disc_distanceFromChamberWall = 1*mm;
   G4double active_diameter = 8*mm;
   G4double active_thickness = 5*um;
-  G4double ptfe_diameter = 40*mm;
+  G4double ptfe_diameter = 34.7*mm;
   G4double ptfe_thickness = 20*mm;
   G4double smallHole_diameter = fHoleWidth*mm;
 
@@ -114,7 +115,7 @@ G4VPhysicalVolume* ptfe_detectorConstruction::Construct()
                         "Disc");               //name                         
   G4VPhysicalVolume* physDisc = 
     new G4PVPlacement(0,                     //no rotation
-                      G4ThreeVector(0,-1*(ptfe_diameter*0.5-disc_diameter*0.5),-1*(ptfe_thickness*0.5+disc_thickness*0.5)+mirrorPtfe_offset),       //at (0,0,0)
+                      G4ThreeVector(0, -1*(ptfe_diameter*0.5-disc_diameter*0.5) + disc_distanceFromChamberWall, -1*(ptfe_thickness*0.5+disc_thickness*0.5)+mirrorPtfe_offset),       //at (0,0,0)
                       logicDisc,            //logical volume
                       "Disc",               //name
                       logicWorld,                     //mother  volume
